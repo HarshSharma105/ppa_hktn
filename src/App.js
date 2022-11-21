@@ -1,24 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import "./styles.css"
+import { useState } from "react";
+import {BrowserRouter, Routes, Route} from "react-router-dom";
+import Header from "./components/Header";
+import infoPanel from "./components/infoPanel";
+import Navigation from "./components/Navigation";
+import Content from "./components/Home/Content";
+import findService from "./components/findService/findService"
 
-function App() {
+const App = () => {
+  const [visible, setVisible] = useState(true)
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+  <BrowserRouter>
+  <div className="App">
+    <Header/>
+    <infoPanel/>
+    <Navigation/>
+    <Content/>
+    <Routes>
+      <Route path="/home" element={<Content/>}/>
+      <Route path="/findService" element={<findService/>}/>
+    </Routes>
+  </div>
+  </BrowserRouter>
   );
 }
 
